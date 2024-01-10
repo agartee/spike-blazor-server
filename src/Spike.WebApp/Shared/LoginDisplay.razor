@@ -1,0 +1,7 @@
+﻿@* The AuthorizeView component selectively displays UI content depending on 
+whether the user is authorized. This approach is useful when you only need to 
+display data for the user and don't need to use the user's identity in 
+procedural logic. *@
+<AuthorizeView>
+    Hello, @context.User.Identity?.Name!
+</AuthorizeView>
