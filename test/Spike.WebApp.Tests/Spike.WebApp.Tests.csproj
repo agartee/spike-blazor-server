@@ -29,8 +29,4 @@
     <ProjectReference Include="..\..\src\Spike.WebApp\Spike.WebApp.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\" />
-  </ItemGroup>
-
 </Project>
