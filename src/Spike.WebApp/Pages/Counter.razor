@@ -6,7 +6,12 @@
 
 <p role="status">Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+@if(currentCount > 0)
+{
+    <p data-message="greater-than-zero">Count is greater than zero.</p>
+}
+
+<button id="increment" class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
     private int currentCount = 0;

@@ -1,0 +1,85 @@
+﻿@page "/simulator/{id}"
+
+@using Microsoft.AspNetCore.Components
+@using Spike.Domain.Models
+@using Spike.Domain.Queries
+@using MediatR
+
+@inject IMediator Mediator
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JsRuntime
+
+<h3>Edit Simulator</h3>
+
+<p>ID: @Id</p>
+
+<EditForm Model="ViewModel">
+    <div class="form-group">
+        <label for="Name">Name:</label>
+        <input type="text" class="form-control" id="Name" @bind="ViewModel.Name" />
+    </div>
+</EditForm>
+
+<button class="btn btn-primary" @onclick="Save">Save</button>
+<button class="btn btn-danger" @onclick="ConfirmCancel">Cancel</button>
+
+@code {
+
+    // not: this must be a string if it comes from a URL parameter
+    [Parameter]
+    public required string Id { get; set; }
+
+    // note: we want to initialize an "empty" view model to establish bindings
+    private SimulatorViewModel ViewModel { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!int.TryParse(Id, out int idValue))
+            throw new InvalidOperationException("Invalid ID");
+
+        var simulator = await Mediator.Send(new DemandSimulator { Id = new SimulatorId(idValue) });
+
+        // note: we can replace the model instead of updating it from our query
+        ViewModel = new SimulatorViewModel
+        {
+            Id = simulator.Id,
+            Name = simulator.Name
+        };
+    }
+
+    private async Task Save()
+    {
+        var simulator = await Mediator.Send(new SaveSimulator 
+        { 
+            Id = ViewModel.Id,
+            Name = ViewModel.Name ?? throw new InvalidOperationException("Name cannot be null.")
+        });
+
+        // note: we can replace the model instead of updating it from our query
+        ViewModel = new SimulatorViewModel
+        {
+            Id = simulator.Id,
+            Name = simulator.Name
+        };
+
+        // invoke client-side "alert"
+        await JsRuntime.InvokeVoidAsync("alert", "Save successful!");
+
+    }
+
+    private async Task ConfirmCancel()
+    {
+        bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Are you sure?");
+
+        if (confirmed)
+        {
+            NavigationManager.NavigateTo("/simulator");
+        }
+    }
+
+    private record SimulatorViewModel
+    {
+        public SimulatorId Id { get; init; } = new SimulatorId(0);
+        public string? Name { get; set; }
+    }
+}

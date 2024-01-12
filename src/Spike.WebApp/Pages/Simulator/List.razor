@@ -1,0 +1,55 @@
+﻿@page "/simulator"
+
+@using Spike.Domain.Models
+@using Spike.Domain.Queries
+@using MediatR
+@inject IMediator Mediator
+
+<PageTitle>Simulators</PageTitle>
+
+<h1>Simulators</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (Simulators == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var simulator in Simulators)
+            {
+                <tr>
+                    <td>@simulator.Id.Value</td>
+                    <td>@simulator.Name</td>
+                    @* note: cannot use property references in href. *@
+                    @* Component attributes do not support complex content (mixed C# and markup). *@
+                    <th><NavLink href="@GetEditLink(simulator)">Edit</NavLink></th>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IEnumerable<SimulatorInfo>? Simulators { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Simulators = await Mediator.Send(new ListSimulators());
+    }
+
+    private string GetEditLink(SimulatorInfo simulator)
+    {
+        return $"/simulator/{simulator.Id}";
+    }
+}

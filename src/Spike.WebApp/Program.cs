@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Negotiate;
-using Spike.Domain.Services;
+using Spike.Domain.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,9 +20,8 @@ builder.Services.AddServerSideBlazor();
 // my services
 builder.Services.AddMediatR(config =>
 {
-    config.RegisterServicesFromAssemblyContaining<WeatherForecastService>();
+    config.RegisterServicesFromAssemblyContaining<SimulatorId>();
 });
-builder.Services.AddTransient<WeatherForecastService>();
 
 var app = builder.Build();
 

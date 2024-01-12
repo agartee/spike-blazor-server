@@ -1,0 +1,14 @@
+{
+  "solutionFile": "spike-blazor-server.sln",
+  "webAppProjectFile": "src/Spike.WebApp/Spike.WebApp.csproj",
+  "test": {
+    "exclusions": [
+      {
+        "project": "Spike.WebApp",
+        "exclude": [
+          "Program"
+        ]
+      }
+    ]
+  }
+}

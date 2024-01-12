@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BCBA2A6B-E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spike.Domain", "src\Spike.Domain\Spike.Domain.csproj", "{6FF4E0A8-D567-4A80-9C39-FAD7F26D8591}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spike.WebApp.Tests", "test\Spike.WebApp.Tests\Spike.WebApp.Tests.csproj", "{1F8FAB34-DDE4-41C6-B04C-469E974B8B29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spike.WebApp.Tests", "test\Spike.WebApp.Tests\Spike.WebApp.Tests.csproj", "{1F8FAB34-DDE4-41C6-B04C-469E974B8B29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
