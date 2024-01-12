@@ -31,9 +31,7 @@ else
                 <tr>
                     <td>@simulator.Id.Value</td>
                     <td>@simulator.Name</td>
-                    @* note: cannot use property references in href. *@
-                    @* Component attributes do not support complex content (mixed C# and markup). *@
-                    <th><NavLink href="@GetEditLink(simulator)">Edit</NavLink></th>
+                    <th><NavLink href="@($"/simulator/{simulator.Id}")">Edit</NavLink></th>
                 </tr>
             }
         </tbody>
@@ -46,10 +44,5 @@ else
     protected override async Task OnInitializedAsync()
     {
         Simulators = await Mediator.Send(new ListSimulators());
-    }
-
-    private string GetEditLink(SimulatorInfo simulator)
-    {
-        return $"/simulator/{simulator.Id}";
     }
 }
