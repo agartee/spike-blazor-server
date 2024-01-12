@@ -41,3 +41,9 @@ Services.AddSingleton(authPolicyProvider);
 ```
 
 > note that this `Services` registration is for the `Bunit.TestContext` test class.
+
+# TODO
+
+- view model "dirty" checks
+- view model validation and screen decoration
+- testing with "AuthorizeView"
