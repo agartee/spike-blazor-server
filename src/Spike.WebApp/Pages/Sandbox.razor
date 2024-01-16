@@ -1,0 +1,28 @@
+﻿@page "/sandbox"
+
+<div>
+    @if (isLoading)
+    {
+        <p>Loading...</p>
+    }
+    else
+    {
+        <p>Sample Content Loaded!</p>
+    }
+</div>
+
+@code {
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Simulate a delay of 2 seconds (2000 milliseconds)
+        await Task.Delay(2000);
+
+        // After the delay, update the isLoading flag to false
+        isLoading = false;
+
+        // Notify Blazor to re-render the component with the new content
+        StateHasChanged();
+    }
+}

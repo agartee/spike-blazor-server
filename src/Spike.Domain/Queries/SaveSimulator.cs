@@ -13,6 +13,8 @@ namespace Spike.Domain.Queries
     {
         public Task<SimulatorInfo> Handle(SaveSimulator request, CancellationToken cancellationToken)
         {
+            Thread.Sleep(2000);
+
             return Task.FromResult(new SimulatorInfo { Id = request.Id, Name = request.Name });
         }
     }

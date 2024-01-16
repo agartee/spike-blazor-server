@@ -47,3 +47,6 @@ Services.AddSingleton(authPolicyProvider);
 - view model "dirty" checks
 - view model validation and screen decoration
 - testing with "AuthorizeView"
+- mock client components?
+- demo passing data to child components and (back up to parents?)
+- make it pretty...

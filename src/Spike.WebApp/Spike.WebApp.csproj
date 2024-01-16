@@ -14,4 +14,12 @@
     <ProjectReference Include="..\Spike.Domain\Spike.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Sandbox.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Sandbox.razor" />
+  </ItemGroup>
+
 </Project>

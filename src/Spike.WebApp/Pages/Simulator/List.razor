@@ -11,7 +11,7 @@
 
 <p>This component demonstrates fetching data from a service.</p>
 
-@if (Simulators == null)
+@if (isLoading)
 {
     <p><em>Loading...</em></p>
 }
@@ -39,10 +39,14 @@ else
 }
 
 @code {
-    private IEnumerable<SimulatorInfo>? Simulators { get; set; }
+    private bool isLoading = true;
+    private IEnumerable<SimulatorInfo> Simulators { get; set; } = new List<SimulatorInfo>();
 
     protected override async Task OnInitializedAsync()
     {
         Simulators = await Mediator.Send(new ListSimulators());
+
+        isLoading = false;
+        StateHasChanged();
     }
 }
